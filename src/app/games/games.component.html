@@ -1,0 +1,23 @@
+<h2>Games</h2>
+
+<div>
+    <label>Template:</label> <select name="singleSelect" #template>
+       <option *ngFor="let template of templates" [value]="template.id">{{template.id}}</option>
+
+    </select>
+    <label>Min players:</label> <input type="number" min="1" #minPlayers >
+    <label>Max players:</label> <input type="number" min="1" #maxPlayers/>
+    <button (click)="add(template.value, minPlayers.value, maxPlayers.value); minPlayers.value=''; maxPlayers.value=''">add</button>
+</div>
+<ul class="heroes">
+    <li *ngFor="let game of games" (click)="onSelect(game)" [class.selected]="game === selectedGame">
+        <span class="badge">{{game.createdOn}}</span>
+        <button class="delete" (click)="delete(game); $event.stopPropagation()">x</button>
+    </li>
+</ul>
+<div *ngIf="selectedGame">
+    <h2>
+        {{selectedHero.id | uppercase}} is my game
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+</div>
