@@ -10,13 +10,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GameService} from './game.service';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { GamesComponent } from './games/games.component';
+import { AuthcallbackComponent } from './authcallback/authcallback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     GameDetailComponent,
-    GamesComponent
+    GamesComponent,
+    AuthcallbackComponent
   ],
   imports: [
     BrowserModule,
