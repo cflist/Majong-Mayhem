@@ -11,7 +11,7 @@
 </div>
 <ul class="heroes">
     <li *ngFor="let game of games" (click)="onSelect(game)" [class.selected]="game === selectedGame">
-        <span class="badge">{{game.createdOn}}</span>
+        <span class="badge">[{{game.id}}] {{game.createdOn}}</span>
         <button class="delete" (click)="delete(game); $event.stopPropagation()">x</button>
     </li>
 </ul>
