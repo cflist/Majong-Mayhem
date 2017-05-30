@@ -45,7 +45,7 @@ export class GameService {
   }
 
   getTiles(gameId: string): Promise<Tile[]> {
-    return this.http.get(this.url + "games/" + gameId + "tiles").toPromise().then(res => res.json() as Tile[]).catch(this.handleError);
+    return this.http.get(this.url + "games/" + gameId + "/tiles").toPromise().then(res => res.json() as Tile[]).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

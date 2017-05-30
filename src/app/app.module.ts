@@ -11,6 +11,7 @@ import { GameService} from './game.service';
 import { GameDetailComponent } from './game-detail/game-detail.component';
 import { GamesComponent } from './games/games.component';
 import { AuthcallbackComponent } from './authcallback/authcallback.component';
+import { GameComponent } from './game/game.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AuthcallbackComponent } from './authcallback/authcallback.component';
     DashboardComponent,
     GameDetailComponent,
     GamesComponent,
-    AuthcallbackComponent
+    AuthcallbackComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,
