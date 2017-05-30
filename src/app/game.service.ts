@@ -4,6 +4,7 @@ import { Headers, Http } from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 
 import { Game } from "./game";
+import { Tile } from "./tile";
 import { GameTemplate } from "./game-template";
 
 @Injectable()
@@ -19,6 +20,10 @@ export class GameService {
 
   getGames(): Promise<Game[]> {
     return this.http.get(this.url + 'games').toPromise().then(res => res.json() as Game[]).catch(this.handleError);
+  }
+
+  getGame(gameId: string): Promise<Game> {
+    return this.http.get(this.url + "games/" + gameId).toPromise().then(res => res.json() as Game).catch(this.handleError);
   }
 
   create(templateName: string, minPlayers: number, maxPlayers: number): Promise<Game> {
@@ -37,6 +42,10 @@ export class GameService {
             .toPromise()
             .then(() => null)
             .catch(this.handleError);
+  }
+
+  getTiles(gameId: string): Promise<Tile[]> {
+    return this.http.get(this.url + "games/" + gameId + "tiles").toPromise().then(res => res.json() as Tile[]).catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {
