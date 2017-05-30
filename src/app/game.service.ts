@@ -28,6 +28,17 @@ export class GameService {
     .catch(this.handleError);
   }
 
+  start(gameId: string) {
+    this.http.post(this.url + 'games/' + gameId + '/start', JSON.stringify({}), {headers: this.headers})
+  }
+
+  delete(gameiId: string): Promise<void> {
+        return this.http.delete(this.url + 'games/' + gameiId, { headers: this.headers})
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);
     return Promise.reject(error.message || error);

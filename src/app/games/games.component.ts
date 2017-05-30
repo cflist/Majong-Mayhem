@@ -32,4 +32,12 @@ export class GamesComponent implements OnInit {
       this.gameService.create(templateName, minPlayers, maxPlayers).then(() => this.getGames()); 
   }
 
+  start(gameId: string): void {
+    this.gameService.start(gameId);
+  }
+
+  delete(gameId: string): void {
+    this.gameService.delete(gameId);
+  }
+
 }
