@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.gameService.getGames().then(games => this.games = games);
-    this.gameService.getTiles('592d396d8f889900111e694a').then(tiles => this.tiles = tiles);
+    this.gameService.getTiles('59359cb5bede460011cbd5e9').then(tiles => this.tiles = tiles);
   }
 
 }
