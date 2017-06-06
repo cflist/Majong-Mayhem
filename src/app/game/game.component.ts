@@ -23,8 +23,10 @@ export class GameComponent implements OnInit {
   }
 
   public getMyStyle(tile) {
-    style = {
-      'left': tile.xPos
+    var style = {
+      'left': tile.xPos + "em",
+      'top': tile.yPos + "em",
+      'z-index': tile.zPos
     }
 
     return style;
