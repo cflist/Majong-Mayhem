@@ -32,8 +32,8 @@ export class GamesComponent implements OnInit {
       this.gameService.create(templateName, minPlayers, maxPlayers).then(() => this.getGames()); 
   }
 
-  start(gameId: string): void {
-    this.gameService.start(gameId);
+  view(game: Game): void {
+    location.href = '/detail/' + game.id;
   }
 
   delete(gameId: string): void {

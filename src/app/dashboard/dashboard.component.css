@@ -59,9 +59,3 @@ h4 {
     min-width: 60px;
   }
 }
-
-@font-face { font-family: Mahjong; src: url('/assets/fonts/mahjong/ma______.ttf'); }
-.tile {
-  font-family: Mahjong;
-  font-size: 60px;
-}
