@@ -7,7 +7,32 @@
 @font-face { font-family: Mahjong; src: url('/assets/fonts/mahjong/ma______.ttf'); }
 
 .tile {
+  background-color: white;
   position: absolute;
   font-family: Mahjong;
-  font-size: 2em;
+  font-size: 3em;
+}
+
+.Bamboo {
+  color: green;
+}
+
+.Circle {
+  color: blue;
+}
+
+.Character {
+  color: red;
+}
+
+.Dragon {
+  color: purple;
+}
+
+.Flower {
+  color: darkgreen;
+}
+
+.Wind {
+  color: yellow;
 }

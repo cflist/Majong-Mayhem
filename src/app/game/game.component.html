@@ -1,3 +1,5 @@
-<div *ngFor="let tile of tiles">
-    <div class="tile" [ngStyle]="getMyStyle(tile)">tile</div>
+<div id="tilecontainer">
+  <div *ngFor="let tile of tiles">
+    <div class="tile {{tile.tile.suit}}" [ngStyle]="getTileStyle(tile)">{{getTileUnicode(tile)}}</div>
+  </div>
 </div>

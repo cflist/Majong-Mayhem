@@ -22,14 +22,20 @@ export class GameComponent implements OnInit {
     .subscribe(tiles => this.tiles = tiles);
   }
 
-  public getMyStyle(tile) {
+  public getTileStyle(tile) {
     var style = {
       'left': tile.xPos + "em",
       'top': tile.yPos + "em",
       'z-index': tile.zPos
     }
 
+    console.log(tile.tile.suit);
+
     return style;
+  }
+
+  public getTileUnicode(tile) {
+    return 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,.'.charAt(tile.tile.name);
   }
 
 }
