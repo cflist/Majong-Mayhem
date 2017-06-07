@@ -13,16 +13,20 @@
   font-size: 3em;
 }
 
+.selected {
+  background-color: pink;
+}
+
 .Bamboo {
   color: green;
 }
 
-.Circle {
-  color: blue;
-}
-
 .Character {
   color: red;
+}
+
+.Circle {
+  color: blue;
 }
 
 .Dragon {
@@ -34,5 +38,5 @@
 }
 
 .Wind {
-  color: yellow;
+  color: orange;
 }

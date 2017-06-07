@@ -14,4 +14,6 @@ export class Tile {
         otherTileId: string;
         foundOn: Date;
     };
+    // Custom properties
+    selected: boolean;
 }
