@@ -24,8 +24,8 @@ export class GameComponent implements OnInit {
 
   public getTileStyle(tile) {
     var style = {
-      'left': tile.xPos + "em",
-      'top': tile.yPos + "em",
+      'left': ((tile.xPos * 40) + (tile.zPos * 5)) + "px",
+      'top': ((tile.yPos * 40) + (tile.zPos * 5)) + "px",
       'z-index': tile.zPos
     }
 
@@ -33,66 +33,26 @@ export class GameComponent implements OnInit {
   }
 
   public getTileUnicode(tile) {
-    //switch(tile.tile.suit) {
-    //  case "Bamboo":
-    //    switch(tile.tile.name) {
-    //      case 1: return "z";
-    //      case 2: return "x";
-    //      case 3: return "c";
-    //      case 4: return "v";
-    //      case 5: return "b";
-    //      case 6: return "n";
-    //      case 7: return "m";
-    //      case 8: return ",";
-    //      case 9: return ".";
-    //   }
-    //  case "Character":
-    //    switch(tile.tile.name) {
-    //      case 1: return "q";
-    //      case 2: return "w";
-    //      case 3: return "e";
-    //      case 4: return "r";
-    //      case 5: return "t";
-    //      case 6: return "y";
-    //      case 7: return "u";
-    //      case 8: return "i";
-    //      case 9: return "o";
-    //    }
-    //  case "Circle":
-    //    switch(tile.tile.name) {
-    //      case 1: return "a";
-    //      case 2: return "s";
-    //      case 3: return "d";
-    //      case 4: return "f";
-    //      case 5: return "g";
-    //      case 6: return "h";
-    //      case 7: return "j";
-    //      case 8: return "k";
-    //      case 9: return "l";
-    //    }
-    //  case "Dragon":
-    //    switch(tile.tile.name) {
-    //      case 1: return 6;
-    //      case 2: return 7;
-    //    }
-    //  case "Flower":
-    //    switch(tile.tile.name) {
-    //      case 1: return "A";
-    //      case 2: return "B";
-    //      case 3: return "C";
-    //      case 4: return "D";
-    //    }
-    //  case "Wind":
-    //    switch(tile.tile.name) {
-    //      case 1: return 1;
-    //      case 2: return 2;
-    //      case 3: return 3;
-    //      case 4: return 4;
-    //    }
-    //  }
+    switch(tile.tile.suit) {
+      case "Bamboo":
+        return 'zxcvbnm,.'.charAt(tile.tile.name);
+      case "Character":
+        return 'qwertyuio'.charAt(tile.tile.name);
+      case "Circle":
+        return 'asdfghjkl'.charAt(tile.tile.name);
+      case "Dragon":
+        return '67'.charAt(tile.tile.name);
+      case "Flower":
+      case "Season":
+      case "Wind":
+        return '1234'.charAt(tile.tile.name);
+      }
+
+    // Error
+    return 'A';
 
     // Fallback
-    return 'abcdefghijklmnopqrstuvwxyz0123456789,.ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(tile.tile.name);
+    //return 'abcdefghijklmnopqrstuvwxyz0123456789,.ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(tile.tile.name);
   }
 
   public selectTile(tile) {
