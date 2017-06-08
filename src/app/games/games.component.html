@@ -15,6 +15,7 @@
         {{game.players.length}}
         <button (click)="view(game); $event.stopPropagation()">View</button>
         <button class="delete" (click)="delete(game); $event.stopPropagation()">x</button>
+        {{game.createdBy.name}}
     </li>
 </ul>
 <div *ngIf="selectedGame">
