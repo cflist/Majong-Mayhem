@@ -41,7 +41,10 @@ export class GameService {
   }
 
   start(gameId: string) {
-    this.http.post(this.url + 'games/' + gameId + '/start', JSON.stringify({}), {headers: this.headers})
+    this.http.post(this.url + 'games/' + gameId + '/start', JSON.stringify({gameiId: gameId}), {headers: this.headers})
+    .toPromise()
+    .then()
+    .catch(this.handleError);
   }
 
   delete(gameiId: string): Promise<void> {
@@ -58,7 +61,7 @@ export class GameService {
   postTileMatch(gameId: string, tiles: Tile[]): Promise<Object> {
     var tileStatus = {
       "tile1Id": tiles[0]._id,
-      "tile2Id": tiles[0]._id
+      "tile2Id": tiles[1]._id
     }
 
     return this.http.post(this.url + 'games/' + gameId + '/tiles/matches', JSON.stringify(tileStatus), {headers: this.headers}).toPromise().then(res => res.json()).catch(this.handleError);
