@@ -14,6 +14,10 @@ export class GameService {
 
   constructor(private http: Http) { }
 
+  getBaseUrl(): string {
+    return this.url;
+  }
+
   getTemplates(): Promise<GameTemplate[]> {
     return this.http.get(this.url + 'gameTemplates').toPromise().then(res => res.json() as GameTemplate[]).catch(this.handleError);
   }

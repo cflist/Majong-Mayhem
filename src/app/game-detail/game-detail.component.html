@@ -20,19 +20,5 @@
 <button *ngIf="canJoin()" (click)="join()">Join</button>
 <button *ngIf="game.state=='playing'" (click)="play()">Play</button>
 
-<script src="https://mahjongmayhem.herokuapp.com/socket.io/socket.io.js"></script>
 <script>
-    var socket = io("http://mahjongmayhem.herokuapp.com?gameId=" + game.id);
-
-    socket.on('start', function() {
-      game.state == "playing";
-    });
-
-    socket.on('end', function() {
-      game.state == "finished";
-    });
-
-    socket.on('playerJoined', function(player) {
-      game.players.push(player);
-    });
 </script>

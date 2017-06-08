@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { GameService }  from '../game.service';
 import { Game } from '../game';
 import { Tile } from '../tile';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-game',
@@ -11,6 +12,7 @@ import { Tile } from '../tile';
 })
 export class GameComponent implements OnInit {
   tiles: Tile[];
+  gameId: string;
   constructor(private gameService: GameService,
   private route: ActivatedRoute) { }
 
@@ -19,7 +21,25 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.route.params
     .switchMap((params: Params) => this.gameService.getTiles(params['id']))
-    .subscribe(tiles => this.tiles = tiles);
+    .subscribe(tiles => {
+      this.tiles = tiles;
+
+      this.route.params
+      .switchMap((params: Params) => this.gameId = params['id'])
+      .subscribe(_ => {
+        var socket = io(this.gameService.getBaseUrl() + "?gameId=" + this.gameId);
+
+        socket.on('match', function(tiles) {
+          console.log("MATCH RECEIVED");
+          this.tiles[tiles[0]].matched = true;
+          this.tiles[tiles[1]].matched = true;
+        });
+
+        socket.on('end', function() {
+          alert("Game ended");
+        });
+      });
+    });
   }
 
   public getTileStyle(tile) {
@@ -83,7 +103,6 @@ export class GameComponent implements OnInit {
 //            console.log("Valid match!");
             this.route.params
             .switchMap((params: Params) => this.gameService.postTileMatch(params['id'], tiles))
-            .subscribe(_ => location.reload());
 //            return;
 //      }
 //    }
