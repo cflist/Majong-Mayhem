@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { GameService }  from '../game.service';
 import { Game } from '../game';
 import { Tile } from '../tile';
@@ -12,8 +11,7 @@ import { Tile } from '../tile';
 })
 export class GameComponent implements OnInit {
   tiles: Tile[];
-  constructor(private _sanitizer: DomSanitizer,
-  private gameService: GameService,
+  constructor(private gameService: GameService,
   private route: ActivatedRoute) { }
 
   private selectedTiles = [];
@@ -123,6 +121,9 @@ export class GameComponent implements OnInit {
       if (tiles[0].matchesWholeSuit ||
           (tiles[0].tile.name == tiles[1].tile.name)) {
             console.log("Valid match!");
+            this.route.params
+            .switchMap((params: Params) => this.gameService.postTileMatch(params['id'], tiles))
+            .subscribe(_ => location.reload());
             return;
       }
     }

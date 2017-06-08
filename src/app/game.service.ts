@@ -55,6 +55,15 @@ export class GameService {
     return this.http.get(this.url + "games/" + gameId + "/tiles").toPromise().then(res => res.json() as Tile[]).catch(this.handleError);
   }
 
+  postTileMatch(gameId: string, tiles: Tile[]): Promise<Object> {
+    var tileStatus = {
+      "tile1Id": tiles[0]._id,
+      "tile2Id": tiles[0]._id
+    }
+
+    return this.http.post(this.url + 'games/' + gameId + '/tiles/matches', JSON.stringify(tileStatus), {headers: this.headers}).toPromise().then(res => res.json()).catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occured', error);
     return Promise.reject(error.message || error);
