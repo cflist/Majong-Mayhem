@@ -10,6 +10,7 @@ import { GameService } from '../game.service';
 })
 export class GamesComponent implements OnInit {
   games: Game[] = [];
+  mygames: Game[] = [];
   templates: GameTemplate[] = [];
   selectedTemplate: GameTemplate;
   constructor(private gameService: GameService) { }
@@ -22,7 +23,10 @@ export class GamesComponent implements OnInit {
   }
 
   getGames(): void {
-    this.gameService.getGames().then(games => this.games = games);
+    this.gameService.getGames().then(games => {
+      this.games = games
+      this.loadMyGames();
+    });
   }
 
   add(templateName: string, minPlayers: number, maxPlayers: number): void {
@@ -36,8 +40,20 @@ export class GamesComponent implements OnInit {
     location.href = '/detail/' + game.id;
   }
 
-  delete(gameId: string): void {
-    this.gameService.delete(gameId);
+  canDelete(game: Game): boolean {
+    if (game.state == "playing"){ return false;}
+    if (game.createdBy._id != localStorage.getItem('username')) {return false; }
+    return true;
+  }
+
+  delete(game: Game): void {
+    this.gameService.delete(game.id);
+  }
+
+  loadMyGames(){
+    this.games.forEach(game => {
+      if (game.players.find(p => p._id == localStorage.getItem('username'))) { this.mygames.push(game);}
+    })
   }
 
 }

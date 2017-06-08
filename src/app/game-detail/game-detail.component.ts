@@ -49,10 +49,21 @@ export class GameDetailComponent implements OnInit {
     this.gameService.join(this.game.id);
   }
 
+  leave(): void {
+    this.gameService.leave(this.game.id);
+  }
+
   canJoin(): boolean {
     if (this.game.players.length >= this.game.maxPlayers) { return false;}
     if (this.game.players.find(w => w._id == localStorage.getItem('username'))) { return false; }
     if (this.game.state != "open") { return false; }
+    return true;
+  }
+
+  canLeave(): boolean {
+    if (this.game.state != "open") { return false;}
+    if (this.game.createdBy._id == localStorage.getItem('username')) { return false;}
+    if (this.game.players.find(w => w._id != localStorage.getItem('username'))) { return false; }
     return true;
   }
 
