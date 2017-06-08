@@ -34,7 +34,7 @@ export class GameService {
   }
 
   join(gameId: string) {
-    this.http.post(this.url ="games/" + gameId + "/players", JSON.stringify({gameId: gameId}), {headers: this.headers})
+    this.http.post(this.url + "games/" + gameId + "/players", JSON.stringify({gameId: gameId}), {headers: this.headers})
     .toPromise()
     .then(res => res.json() as Game)
     .catch(this.handleError);
