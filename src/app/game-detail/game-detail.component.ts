@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { GameService }  from '../game.service';
 import { Game } from '../game';
+import { Player } from '../player';
 import * as io from 'socket.io-client';
 
 import 'rxjs/add/operator/switchMap';
@@ -21,22 +22,26 @@ export class GameDetailComponent implements OnInit {
     .switchMap((params: Params) => this.gameService.getGame(params['id']))
     .subscribe(game => {
       this.game = game;
+      var that = this;
 
       var socket = io(this.gameService.getBaseUrl() + "?gameId=" + this.game.id);
 
       socket.on('start', function() {
         console.log("GAME STARTED");
-        this.game.state == "playing";
+        that.game.state == "playing";
       });
 
       socket.on('end', function() {
         console.log("GAME FINISHED");
-        this.game.state == "finished";
+        that.game.state == "finished";
       });
 
       socket.on('playerJoined', function(player) {
+        delete player.token;
+        var newPlayer: Player = player;
+        console.log(player);
         console.log("PLAYER JOINED");
-        this.game.players.push(player);
+        that.game.players.push(newPlayer);
       });
     });
   }
@@ -51,6 +56,10 @@ export class GameDetailComponent implements OnInit {
 
   leave(): void {
     this.gameService.leave(this.game.id);
+  }
+
+  canStart(): boolean {
+    return this.game.createdBy._id == localStorage.getItem('username') && this.game.state == 'open';
   }
 
   canJoin(): boolean {

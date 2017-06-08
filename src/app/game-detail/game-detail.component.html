@@ -16,7 +16,7 @@
   <li><b>State:</b> {{game.state}}</li>
 </ul>
 
-<button *ngIf="game.state=='open'" (click)="start()">Start</button>
+<button *ngIf="canStart()" (click)="start()">Start</button>
 <button *ngIf="canJoin()" (click)="join()">Join</button>
 <button *ngIf="game.state=='playing'" (click)="play()">Play</button>
 <button *ngIf="canLeave()" (click)="leave()">Leave</button>
