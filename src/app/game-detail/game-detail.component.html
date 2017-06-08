@@ -17,4 +17,5 @@
 </ul>
 
 <button *ngIf="game.state=='open'" (click)="start()">Start</button>
+<button *ngIf="canJoin()" (click)="join()">Join</button>
 <button *ngIf="game.state=='playing'" (click)="play()">Play</button>

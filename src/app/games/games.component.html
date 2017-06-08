@@ -12,6 +12,7 @@
 <ul class="heroes">
     <li *ngFor="let game of games" (click)="onSelect(game)" [class.selected]="game === selectedGame">
         <span class="badge">{{game.state}}</span>
+        {{game.players.length}}
         <button (click)="view(game); $event.stopPropagation()">View</button>
         <button class="delete" (click)="delete(game); $event.stopPropagation()">x</button>
     </li>

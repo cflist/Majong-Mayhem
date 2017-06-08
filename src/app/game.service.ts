@@ -10,7 +10,7 @@ import { GameTemplate } from "./game-template";
 @Injectable()
 export class GameService {
   private url = 'https://mahjongmayhem.herokuapp.com/';
-  private headers = new Headers({'Content-Type': 'application/json', 'x-username': 'your.name@student.avans.nl', 'x-token': 'efgyarbvizhvbebfhulvuib'});
+  private headers = new Headers({'Content-Type': 'application/json', 'x-username': localStorage.getItem('username'), 'x-token': localStorage.getItem('token')});
 
   constructor(private http: Http) { }
 
@@ -28,6 +28,13 @@ export class GameService {
 
   create(templateName: string, minPlayers: number, maxPlayers: number): Promise<Game> {
     return this.http.post(this.url + 'games', JSON.stringify({templateName: templateName, minPlayers: minPlayers, maxPlayers: maxPlayers}), {headers: this.headers})
+    .toPromise()
+    .then(res => res.json() as Game)
+    .catch(this.handleError);
+  }
+
+  join(gameId: string) {
+    this.http.post(this.url ="games/" + gameId + "/players", JSON.stringify({gameId: gameId}), {headers: this.headers})
     .toPromise()
     .then(res => res.json() as Game)
     .catch(this.handleError);

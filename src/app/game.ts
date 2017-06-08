@@ -14,6 +14,6 @@ export class Game {
     };
     minPlayers: number;
     maxPlayers: number;
-    players: Player
+    players: Player[];
     state: string;
 }
