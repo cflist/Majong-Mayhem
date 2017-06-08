@@ -36,8 +36,14 @@ export class GamesComponent implements OnInit {
     location.href = '/detail/' + game.id;
   }
 
-  delete(gameId: string): void {
-    this.gameService.delete(gameId);
+  canDelete(game: Game): boolean {
+    if (game.state == "playing"){ return false;}
+    if (game.createdBy._id != localStorage.getItem('username')) {return false; }
+    return true;
+  }
+
+  delete(game: Game): void {
+    this.gameService.delete(game.id);
   }
 
 }

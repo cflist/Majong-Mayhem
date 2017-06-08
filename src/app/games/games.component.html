@@ -14,7 +14,7 @@
         <span class="badge">{{game.state}}</span>
         {{game.players.length}}
         <button (click)="view(game); $event.stopPropagation()">View</button>
-        <button class="delete" (click)="delete(game); $event.stopPropagation()">x</button>
+        <button *ngIf="canDelete(game)" class="delete" (click)="delete(game); $event.stopPropagation()">x</button>
         {{game.createdBy.name}}
     </li>
 </ul>
