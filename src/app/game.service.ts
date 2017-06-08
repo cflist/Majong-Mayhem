@@ -40,6 +40,13 @@ export class GameService {
     .catch(this.handleError);
   }
 
+  leave(gameId: string) {
+    this.http.delete(this.url + "games/" + gameId + "/players", { headers: this.headers})
+    .toPromise()
+    .then(() => null)
+    .catch(this.handleError);
+  }
+
   start(gameId: string) {
     this.http.post(this.url + 'games/' + gameId + '/start', JSON.stringify({gameiId: gameId}), {headers: this.headers})
     .toPromise()

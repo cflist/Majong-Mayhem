@@ -1,3 +1,14 @@
+<h2>My games</h2>
+<ul class="heroes">
+    <li *ngFor="let game of mygames" (click)="onSelect(game)" [class.selected]="game === selectedGame">
+        <span class="badge">{{game.state}}</span>
+        {{game.players.length}}
+        <button (click)="view(game); $event.stopPropagation()">View</button>
+        <button *ngIf="canDelete(game)" class="delete" (click)="delete(game); $event.stopPropagation()">x</button>
+        {{game.createdBy.name}}
+    </li>
+</ul>
+
 <h2>Games</h2>
 
 <div>
@@ -18,9 +29,4 @@
         {{game.createdBy.name}}
     </li>
 </ul>
-<div *ngIf="selectedGame">
-    <h2>
-        {{selectedHero.id | uppercase}} is my game
-    </h2>
-    <button (click)="gotoDetail()">View Details</button>
-</div>
+
