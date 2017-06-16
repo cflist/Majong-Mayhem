@@ -32,6 +32,7 @@ export class GamesComponent implements OnInit {
   }
 
   add(templateName: string, minPlayers: number, maxPlayers: number): void {
+    if (minPlayers > maxPlayers) {alert("Minimal amount of players can not be higher than the maximum amount of players"); return;}
       this.gameService.create(templateName, minPlayers, maxPlayers).then(() => this.getGames());
   }
 

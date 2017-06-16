@@ -48,9 +48,13 @@ export class GameComponent implements OnInit {
   }
 
   public getTileStyle(tile) {
+    var x = 57;
+    var y = 79;
     var style = {
-      'left': ((tile.xPos * 30) + (tile.zPos * 5)) + "px",
-      'top': ((tile.yPos * 30) + (tile.zPos * 5)) + "px",
+      //'left': ((tile.xPos * 30) + (tile.zPos * 5)) + "px",
+      //'top': ((tile.yPos * 30) + (tile.zPos * 5)) + "px",
+      'left': (tile.xPos * (x/2)) + (tile.zPos * 5) + "px",
+      'top': (tile.yPos * (y/2)) - (tile.zPos * 5) + "px",
       'z-index': tile.zPos
     }
 
