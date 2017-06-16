@@ -72,6 +72,12 @@ export class GameComponent implements OnInit {
           case "Blue": return 9;
         }
       case "Flower":
+        switch(tile.tile.name) {
+          case "Plum": return 1;
+          case "Orchid": return 2;
+          case "Chrysanthenum": return 3;
+          case "Bamboo": return 4;
+        }
       case "Season":
         return '1234'.charAt(tile.tile.name);
       case "Wind":
