@@ -1,3 +1,9 @@
+<div id="matchcontainer">
+  <div *ngFor="let player of players">
+    <div>{{player.name}}: {{player.numberOfMatches}}</div>
+  </div>
+</div>
+
 <div id="tilecontainer">
   <div *ngFor="let tile of tiles">
     <div *ngIf="!tile.match" class="tile {{tile.tile.suit}}" [class.selected]="tile.selected" [ngStyle]="getTileStyle(tile)" (click)="selectTile(tile)">{{getTileUnicode(tile)}}</div>

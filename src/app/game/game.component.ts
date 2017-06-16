@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { GameService }  from '../game.service';
 import { Game } from '../game';
 import { Tile } from '../tile';
+import { Player } from '../player';
 import * as io from 'socket.io-client';
 
 @Component({
@@ -12,6 +13,7 @@ import * as io from 'socket.io-client';
 })
 export class GameComponent implements OnInit {
   tiles: Tile[];
+  players: Player[];
   gameId: string;
   constructor(private gameService: GameService,
   private route: ActivatedRoute) { }
@@ -27,21 +29,29 @@ export class GameComponent implements OnInit {
       this.route.params
       .switchMap((params: Params) => this.gameId = params['id'])
       .subscribe(_ => {
-        var socket = io(this.gameService.getBaseUrl() + "?gameId=" + this.gameId);
-        var that = this;
+        this.gameService.getPlayers(this.gameId).then(players => {
+          this.players = players;
 
-        socket.on('match', function(tiles) {
-          console.log("MATCH RECEIVED");
-          for (var i = 0; i < 2; i++) {
-            var matchingTile = that.tiles.find(function (tile) {
-              return tile._id == tiles[i]._id;
-            });
-            matchingTile.match = tiles[i].match;
-          }
-        });
+          var socket = io(this.gameService.getBaseUrl() + "?gameId=" + this.gameId);
+          var that = this;
 
-        socket.on('end', function() {
-          alert("Game ended");
+          socket.on('match', function(tiles) {
+            console.log("MATCH RECEIVED");
+
+            this.players.find(function (player) {
+              return player._id == tiles[0].match.foundBy;
+            }).numberOfMatches++;
+
+            for (var i = 0; i < 2; i++) {
+              that.tiles.find(function (tile) {
+                return tile._id == tiles[i]._id;
+              }).match = tiles[i].match;
+            }
+          });
+
+          socket.on('end', function() {
+            alert("Game ended");
+          });
         });
       });
     });
@@ -131,12 +141,15 @@ export class GameComponent implements OnInit {
     if (tiles[0].tile.suit == tiles[1].tile.suit) {
       if (tiles[0].matchesWholeSuit ||
           (tiles[0].tile.name == tiles[1].tile.name)) {
-            console.log("Valid match!");
-            this.gameService.postTileMatch(this.gameId, tiles);
+            this.gameService.postTileMatch(this.gameId, tiles).then(object => {
+              alert(object.message.replace(/{{.*}} /g, ''));
+            });
             return;
+      } else {
+        alert("The chosen tiles are not a match");
       }
+    } else {
+      alert("The chosen tiles are not of the same suit");
     }
-
-    console.log("Not a match!");
   }
 }

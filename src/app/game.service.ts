@@ -5,6 +5,8 @@ import 'rxjs/add/operator/toPromise';
 
 import { Game } from "./game";
 import { Tile } from "./tile";
+import { TileMatchResponse } from "./tileMatchResponse";
+import { Player } from "./player";
 import { GameTemplate } from "./game-template";
 
 @Injectable()
@@ -69,13 +71,17 @@ export class GameService {
     return this.http.get(this.url + "games/" + gameId + "/tiles").toPromise().then(res => res.json() as Tile[]).catch(this.handleError);
   }
 
-  postTileMatch(gameId: string, tiles: Tile[]): Promise<Object> {
+  getPlayers(gameId: string): Promise<Player[]> {
+    return this.http.get(this.url + "games/" + gameId + "/players").toPromise().then(res => res.json() as Player[]).catch(this.handleError);
+  }
+
+  postTileMatch(gameId: string, tiles: Tile[]): Promise<TileMatchResponse> {
     var tileStatus = {
       "tile1Id": tiles[0]._id,
       "tile2Id": tiles[1]._id
     }
 
-    return this.http.post(this.url + 'games/' + gameId + '/tiles/matches', JSON.stringify(tileStatus), {headers: this.headers}).toPromise().then(res => res.json()).catch(this.handleError);
+    return this.http.post(this.url + 'games/' + gameId + '/tiles/matches', JSON.stringify(tileStatus), {headers: this.headers}).toPromise().catch(res => res.json() as TileMatchResponse);
   }
 
   private handleError(error: any): Promise<any> {
