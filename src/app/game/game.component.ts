@@ -61,13 +61,10 @@ export class GameComponent implements OnInit {
     switch(tile.tile.suit) {
       case "Bamboo":
         return 'zxcvbnm,.'.charAt(tile.tile.name);
-        break;
       case "Character":
         return 'qwertyuio'.charAt(tile.tile.name);
-        break;
       case "Circle":
         return 'asdfghjkl'.charAt(tile.tile.name);
-        break;
       case "Dragon":
         switch(tile.tile.name) {
           case "Red": return 7;
@@ -85,7 +82,6 @@ export class GameComponent implements OnInit {
         break;
       case "Season":
         return '1234'.charAt(tile.tile.name);
-        break;
       case "Wind":
         switch(tile.tile.name) {
           case "East": return 1;
