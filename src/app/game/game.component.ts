@@ -38,7 +38,7 @@ export class GameComponent implements OnInit {
           socket.on('match', function(tiles) {
             console.log("MATCH RECEIVED");
 
-            this.players.find(function (player) {
+            that.players.find(function (player) {
               return player._id == tiles[0].match.foundBy;
             }).numberOfMatches++;
 
