@@ -142,7 +142,8 @@ export class GameComponent implements OnInit {
       if (tiles[0].matchesWholeSuit ||
           (tiles[0].tile.name == tiles[1].tile.name)) {
             this.gameService.postTileMatch(this.gameId, tiles).then(object => {
-              alert(object.message.replace(/{{.*}} /g, ''));
+              if (object.message){
+              alert(object.message.replace(/{{.*}} /g, ''));}
             });
             return;
       } else {
