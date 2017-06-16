@@ -30,6 +30,7 @@ export class GameDetailComponent implements OnInit {
       socket.on('start', function() {
         console.log("GAME STARTED");
         that.game.state == "playing";
+        that.play();
       });
 
       socket.on('end', function() {
@@ -49,7 +50,6 @@ export class GameDetailComponent implements OnInit {
 
   start(): void {
     this.gameService.start(this.game.id);
-    this.play();
   }
 
   join(): void {
