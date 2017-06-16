@@ -1,9 +1,13 @@
+<nav>
+  <a href="/games">Back</a>
+</nav>
+
 <ul>
   <li><b>id:</b> {{game.id}}</li>
   <li><b>Template:</b> {{game.gameTemplate.id}}</li>
-  <li><b>Created on:</b> {{game.createdOn}}</li>
-  <li><b>Started on:</b> {{game.startedOn}}</li>
-  <li><b>Ended on:</b> {{game.endedOn}}</li>
+  <li><b>Created on:</b> {{game.createdOn | date}}</li>
+  <li><b>Started on:</b> {{game.startedOn | date}}</li>
+  <li><b>Ended on:</b> {{game.endedOn | date}}</li>
   <li><b>Created by:</b> {{game.createdBy.name}}</li>
   <li><b>Min players:</b> {{game.minPlayers}}</li>
   <li><b>Max players:</b> {{game.maxPlayers}}</li>

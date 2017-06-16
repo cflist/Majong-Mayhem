@@ -8,11 +8,11 @@ import { AuthcallbackComponent } from '../authcallback/authcallback.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  { path: 'authcallback', component: AuthcallbackComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'deletegame/:id', component: GamesComponent },
   { path: 'detail/:id', component: GameDetailComponent },
   { path: 'games', component: GamesComponent },
-  { path: 'deletegame/:id', component: GamesComponent },
-  { path: 'authcallback', component: AuthcallbackComponent },
   { path: 'games/:id', component: GameComponent}
 ]
 

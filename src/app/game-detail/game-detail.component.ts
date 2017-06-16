@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { GameService }  from '../game.service';
 import { Game } from '../game';
 import { Player } from '../player';
@@ -15,7 +15,8 @@ import 'rxjs/add/operator/switchMap';
 export class GameDetailComponent implements OnInit {
   game: Game;
   constructor(private gameService: GameService,
-  private route: ActivatedRoute) { }
+  private route: ActivatedRoute,
+  private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -77,7 +78,7 @@ export class GameDetailComponent implements OnInit {
   }
 
   play(): void {
-    location.href = '/games/' + this.game.id;
+    this.router.navigate(['/games', this.game.id]);
   }
 
 }

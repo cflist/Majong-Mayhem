@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { Game } from '../game';
 import { GameTemplate } from '../game-template';
 import { GameService } from '../game.service';
@@ -13,13 +14,14 @@ export class GamesComponent implements OnInit {
   mygames: Game[] = [];
   templates: GameTemplate[] = [];
   selectedTemplate: GameTemplate;
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getGames();
     this.gameService.getTemplates().then(templates => {
       this.templates = templates; console.log(templates);
-    });    
+    });
   }
 
   getGames(): void {
@@ -30,14 +32,11 @@ export class GamesComponent implements OnInit {
   }
 
   add(templateName: string, minPlayers: number, maxPlayers: number): void {
-      console.log(templateName);
-      console.log(minPlayers);
-      console.log(maxPlayers);
-      this.gameService.create(templateName, minPlayers, maxPlayers).then(() => this.getGames()); 
+      this.gameService.create(templateName, minPlayers, maxPlayers).then(() => this.getGames());
   }
 
   view(game: Game): void {
-    location.href = '/detail/' + game.id;
+    this.router.navigate(['/detail', game.id]);
   }
 
   canDelete(game: Game): boolean {

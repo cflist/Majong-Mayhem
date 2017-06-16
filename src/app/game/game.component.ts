@@ -97,16 +97,16 @@ export class GameComponent implements OnInit {
     tiles[0].selected = false;
     tiles[1].selected = false;
 
-//    if (tiles[0].tile.suit == tiles[1].tile.suit) {
-//      if (tiles[0].matchesWholeSuit ||
-//          (tiles[0].tile.name == tiles[1].tile.name)) {
-//            console.log("Valid match!");
-            this.route.params
-            .switchMap((params: Params) => this.gameService.postTileMatch(params['id'], tiles))
-//            return;
-//      }
-//    }
-//
-//    console.log("Not a match!");
+    if (tiles[0].tile.suit == tiles[1].tile.suit) {
+      if (tiles[0].matchesWholeSuit ||
+          (tiles[0].tile.name == tiles[1].tile.name)) {
+            console.log("Valid match!");
+          this.route.params
+          .switchMap((params: Params) => this.gameService.postTileMatch(params['id'], tiles))
+            return;
+      }
+    }
+
+    console.log("Not a match!");
   }
 }
