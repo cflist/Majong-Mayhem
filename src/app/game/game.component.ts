@@ -21,14 +21,12 @@ export class GameComponent implements OnInit {
   private selectedTiles = [];
 
   ngOnInit() {
-    this.route.params
-    .switchMap((params: Params) => this.gameService.getTiles(params['id']))
-    .subscribe(tiles => {
-      this.tiles = tiles;
+    this.route.params.subscribe(params => {
+      this.gameId = params['id'];
 
-      this.route.params
-      .switchMap((params: Params) => this.gameId = params['id'])
-      .subscribe(_ => {
+      this.gameService.getTiles(this.gameId).then(tiles => {
+        this.tiles = tiles;
+
         this.gameService.getPlayers(this.gameId).then(players => {
           this.players = players;
 
@@ -36,8 +34,6 @@ export class GameComponent implements OnInit {
           var that = this;
 
           socket.on('match', function(tiles) {
-            console.log("MATCH RECEIVED");
-
             that.players.find(function (player) {
               return player._id == tiles[0].match.foundBy;
             }).numberOfMatches++;
