@@ -50,7 +50,6 @@ export class GameDetailComponent implements OnInit {
 
   start(): void {
     this.gameService.start(this.game.id);
-    this.play();
   }
 
   join(): void {
