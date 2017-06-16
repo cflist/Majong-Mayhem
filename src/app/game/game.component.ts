@@ -81,7 +81,15 @@ export class GameComponent implements OnInit {
         }
         break;
       case "Season":
-        return '1234'.charAt(tile.tile.name);
+        switch(tile.tile.name) {
+          case "Summer": return 1;
+          case "Spring": return 2;
+          case "Winter": return 3;
+          case "Fall":
+          case "Autumn":
+            return 4;
+        }
+        break;
       case "Wind":
         switch(tile.tile.name) {
           case "East": return 1;
