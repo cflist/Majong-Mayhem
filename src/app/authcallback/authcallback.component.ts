@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-authcallback',
@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class AuthcallbackComponent implements OnInit {
   private sub: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.sub = this.route.queryParams.subscribe(params => {
@@ -17,7 +18,7 @@ export class AuthcallbackComponent implements OnInit {
       localStorage.setItem('username', params['username']);
       localStorage.setItem('token', params['token']);
 
-      location.href = '/';
+      this.router.navigate(['/']);
     });
   }
 
