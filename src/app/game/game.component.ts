@@ -28,11 +28,12 @@ export class GameComponent implements OnInit {
       .switchMap((params: Params) => this.gameId = params['id'])
       .subscribe(_ => {
         var socket = io(this.gameService.getBaseUrl() + "?gameId=" + this.gameId);
+        var that = this;
 
         socket.on('match', function(tiles) {
           console.log("MATCH RECEIVED");
-          this.tiles[tiles[0]].matched = true;
-          this.tiles[tiles[1]].matched = true;
+          that.tiles[tiles[0]].matched = true;
+          that.tiles[tiles[1]].matched = true;
         });
 
         socket.on('end', function() {
@@ -44,8 +45,8 @@ export class GameComponent implements OnInit {
 
   public getTileStyle(tile) {
     var style = {
-      'left': ((tile.xPos * 40) + (tile.zPos * 5)) + "px",
-      'top': ((tile.yPos * 40) + (tile.zPos * 5)) + "px",
+      'left': ((tile.xPos * 30) + (tile.zPos * 5)) + "px",
+      'top': ((tile.yPos * 30) + (tile.zPos * 5)) + "px",
       'z-index': tile.zPos
     }
 
@@ -61,7 +62,11 @@ export class GameComponent implements OnInit {
       case "Circle":
         return 'asdfghjkl'.charAt(tile.tile.name);
       case "Dragon":
-        return '67'.charAt(tile.tile.name);
+        switch(tile.tile.name) {
+          case "Red": return 7;
+          case "Green": return 6;
+          case "Blue": return 9;
+        }
       case "Flower":
       case "Season":
         return '1234'.charAt(tile.tile.name);
@@ -100,16 +105,17 @@ export class GameComponent implements OnInit {
     tiles[0].selected = false;
     tiles[1].selected = false;
 
-   if (tiles[0].tile.suit == tiles[1].tile.suit) {
-     if (tiles[0].matchesWholeSuit ||
-         (tiles[0].tile.name == tiles[1].tile.name)) {
-           console.log("Valid match!");
-            this.route.params
-            .switchMap((params: Params) => this.gameService.postTileMatch(params['id'], tiles))
-           return;
-     }
-   }
+    console.log(tiles);
 
-   console.log("Not a match!");
+    if (tiles[0].tile.suit == tiles[1].tile.suit) {
+      if (tiles[0].matchesWholeSuit ||
+          (tiles[0].tile.name == tiles[1].tile.name)) {
+            console.log("Valid match!");
+            this.gameService.postTileMatch(this.gameId, tiles);
+            return;
+      }
+    }
+
+    console.log("Not a match!");
   }
 }
