@@ -64,15 +64,18 @@ export class GameComponent implements OnInit {
         return '67'.charAt(tile.tile.name);
       case "Flower":
       case "Season":
-      case "Wind":
         return '1234'.charAt(tile.tile.name);
+      case "Wind":
+        switch(tile.tile.name) {
+          case "East": return 1;
+          case "South": return 2;
+          case "West": return 3;
+          case "North": return 4;
+        }
       }
 
     // Error
     return 'A';
-
-    // Fallback
-    //return 'abcdefghijklmnopqrstuvwxyz0123456789,.ABCDEFGHIJKLMNOPQRSTUVWXYZ'.charAt(tile.tile.name);
   }
 
   public selectTile(tile) {
