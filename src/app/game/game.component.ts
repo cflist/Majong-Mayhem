@@ -69,7 +69,7 @@ export class GameComponent implements OnInit {
         switch(tile.tile.name) {
           case "Red": return 7;
           case "Green": return 6;
-          case "Blue": return 9;
+          case "White": return 9;
         }
         break;
       case "Flower":
