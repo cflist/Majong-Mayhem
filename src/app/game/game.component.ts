@@ -61,25 +61,31 @@ export class GameComponent implements OnInit {
     switch(tile.tile.suit) {
       case "Bamboo":
         return 'zxcvbnm,.'.charAt(tile.tile.name);
+        break;
       case "Character":
         return 'qwertyuio'.charAt(tile.tile.name);
+        break;
       case "Circle":
         return 'asdfghjkl'.charAt(tile.tile.name);
+        break;
       case "Dragon":
         switch(tile.tile.name) {
           case "Red": return 7;
           case "Green": return 6;
           case "Blue": return 9;
         }
+        break;
       case "Flower":
         switch(tile.tile.name) {
           case "Plum": return 1;
           case "Orchid": return 2;
-          case "Chrysanthenum": return 3;
+          case "Chrysantememum": return 3;
           case "Bamboo": return 4;
         }
+        break;
       case "Season":
         return '1234'.charAt(tile.tile.name);
+        break;
       case "Wind":
         switch(tile.tile.name) {
           case "East": return 1;
@@ -87,6 +93,7 @@ export class GameComponent implements OnInit {
           case "West": return 3;
           case "North": return 4;
         }
+        break;
       }
 
     // Error
