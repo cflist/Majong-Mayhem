@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpModule } from '@angular/http';
+import { GameService } from '../game.service';
 import { GameDetailComponent } from './game-detail.component';
 
 describe('GameDetailComponent', () => {
@@ -8,7 +10,12 @@ describe('GameDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameDetailComponent ]
+      declarations: [ GameDetailComponent ],
+      imports: [
+        RouterTestingModule,
+        HttpModule
+      ],
+      providers: [GameService]
     })
     .compileComponents();
   }));
