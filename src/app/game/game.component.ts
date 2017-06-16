@@ -32,9 +32,12 @@ export class GameComponent implements OnInit {
 
         socket.on('match', function(tiles) {
           console.log("MATCH RECEIVED");
-          console.log(tiles);
-          that.tiles[tiles[0]] = tiles[0];
-          that.tiles[tiles[1]] = tiles[1];
+          for (var i = 0; i < 2; i++) {
+            var matchingTile = that.tiles.find(function (tile) {
+              return tile._id == tiles[i]._id;
+            });
+            matchingTile.match = tiles[i].match;
+          }
         });
 
         socket.on('end', function() {
