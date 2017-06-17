@@ -1,14 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Tile } from '../tile';
 
 @Component({
-  selector: 'tile',
+  selector: 'app-tile',
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.css']
 })
 
 export class TileComponent {
   @Input() tile: Tile;
+  @Output() tileSelected: EventEmitter<any> = new EventEmitter();
+
+  sendNotification() {
+    this.tileSelected.emit(this.tile);
+  }
+
   constructor() { }
 
   public getTileStyle() {

@@ -1,5 +1,3 @@
-@font-face { font-family: Mahjong; src: url('/assets/fonts/mahjong/ma______.ttf'); }
-
 .tile {
   background-color: white;
   position: absolute;

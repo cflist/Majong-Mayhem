@@ -5,8 +5,6 @@
 </div>
 
 <div id="tilecontainer">
-  <div *ngFor="let tile of tiles">
-    <tile [tile]=tile>
-    </tile>
-  </div>
+  <app-board [tiles]=tiles (tileSelected)=tileSelected($event)>
+  </app-board>
 </div>
