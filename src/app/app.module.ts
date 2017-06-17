@@ -13,6 +13,7 @@ import { GameDetailComponent } from './game-detail/game-detail.component';
 import { GamesComponent } from './games/games.component';
 import { AuthcallbackComponent } from './authcallback/authcallback.component';
 import { GameComponent } from './game/game.component';
+import { TileComponent } from './tile/tile.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GameComponent } from './game/game.component';
     GameDetailComponent,
     GamesComponent,
     AuthcallbackComponent,
-    GameComponent
+    GameComponent,
+    TileComponent
   ],
   imports: [
     BrowserModule,

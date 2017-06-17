@@ -5,7 +5,7 @@ export class Tile {
     tile: {
         id: number;
         suit: string;
-        name: number;
+        name: string;
         matchesWholeSuit: boolean;
     };
     _id: string;
