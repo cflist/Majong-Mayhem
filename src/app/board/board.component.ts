@@ -6,7 +6,7 @@ import { Tile } from '../tile';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  styleUrls: ['./board.component.sass']
 })
 export class BoardComponent {
   @Input() tiles: Tile[];

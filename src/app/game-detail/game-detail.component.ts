@@ -9,8 +9,7 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-game-detail',
-  templateUrl: './game-detail.component.html',
-  styleUrls: ['./game-detail.component.css']
+  templateUrl: './game-detail.component.html'
 })
 export class GameDetailComponent implements OnInit {
   game: Game;

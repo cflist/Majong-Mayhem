@@ -9,7 +9,7 @@ import * as io from 'socket.io-client';
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  styleUrls: ['./game.component.sass']
 })
 export class GameComponent implements OnInit {
   tiles: Tile[];

@@ -4,7 +4,7 @@ import { Tile } from '../tile';
 @Component({
   selector: 'app-tile',
   templateUrl: './tile.component.html',
-  styleUrls: ['./tile.component.css']
+  styleUrls: ['./tile.component.sass']
 })
 
 export class TileComponent {
