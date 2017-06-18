@@ -1,4 +1,5 @@
 @import "~theme.sass"
+@import "~theme-override.sass"
 
 /* #docregion , quickstart, toh */
 /* Master Styles */
@@ -15,13 +16,13 @@ h2, h3
 
 body
   margin: 2em * $base-size
-  color: #888
+  color: $body-color
   font-family: Cambria, Georgia
 
 /* #enddocregion quickstart */
 
 input[text], button
-  color: #888
+  color: $button-color
   font-family: Cambria, Georgia
 
 /* #enddocregion toh */
@@ -32,17 +33,18 @@ a
 
 button
   font-family: Arial
-  background-color: #eee
+  background-color: $button-background-color
   border: none
   padding: 5px * $base-size 10px * $base-size
   border-radius: 4px * $base-size
   cursor: pointer
   cursor: hand
   &:hover
-    background-color: #cfd8dc
+    background-color: $button-hover-background-color
+    color: $button-hover-color
   &:disabled
-    background-color: #eee
-    color: #aaa
+    background-color: $button-disabled-background-color
+    color: $button-disabled-color
     cursor: auto
 
 /* Navigation link styles */
@@ -53,20 +55,18 @@ nav a
   margin-right: 10px * $base-size
   margin-top: 10px * $base-size
   display: inline-block
-  background-color: #eee
+  background-color: $nav-background-color
   border-radius: 4px * $base-size
   &:visited
-    color: #607D8B
+    color: $nav-visited-color
+  &:hover
+    color: $nav-hover-color
+    background-color: $nav-hover-background-color
+  &.active
+    color: $nav-active-color
 
 a:link
-  color: #607D8B
-
-nav a
-  &:hover
-    color: #039be5
-    background-color: #CFD8DC
-  &.active
-    color: #039be5
+  color: $link-color
 
 /* items class */
 
@@ -79,29 +79,29 @@ nav a
     cursor: pointer
     position: relative
     left: 0
-    background-color: #EEE
+    background-color: $list-background-color
     margin: .5em * $base-size
     padding: .3em * $base-size 0
     height: 1.6em * $base-size
     border-radius: 4px * $base-size
     &:hover
-      color: #607D8B
-      background-color: #DDD
+      color: $list-hover-color
+      background-color: $list-hover-background-color
       left: .1em * $base-size
     &.selected
-      background-color: #CFD8DC
-      color: white
+      background-color: $list-selected-background-color
+      color: $list-selected-color
       &:hover
-        background-color: #BBD8DC
+        background-color: $list-selected-hover-background-color
   .text
     position: relative
     top: -3px * $base-size
   .badge
     display: inline-block
     font-size: small
-    color: white
+    color: $badge-color
     padding: 0.8em * $base-size 0.7em * $base-size 0 0.7em * $base-size
-    background-color: #607D8B
+    background-color: $badge-background-color
     line-height: 1em * $base-size
     position: relative
     left: -1px * $base-size
