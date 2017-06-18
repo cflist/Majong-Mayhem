@@ -1,18 +1,20 @@
+@import "~theme.sass"
+
 /* #docregion , quickstart, toh */
 /* Master Styles */
 
 h1
-  color: #369
+  color: $header-color
   font-family: Arial, Helvetica, sans-serif
   font-size: 250%
 
 h2, h3
-  color: #444
+  color: $header-small-color
   font-family: Arial, Helvetica, sans-serif
   font-weight: lighter
 
 body
-  margin: 2em
+  margin: 2em * $base-size
   color: #888
   font-family: Cambria, Georgia
 
@@ -32,8 +34,8 @@ button
   font-family: Arial
   background-color: #eee
   border: none
-  padding: 5px 10px
-  border-radius: 4px
+  padding: 5px * $base-size 10px * $base-size
+  border-radius: 4px * $base-size
   cursor: pointer
   cursor: hand
   &:hover
@@ -46,13 +48,13 @@ button
 /* Navigation link styles */
 
 nav a
-  padding: 5px 10px
+  padding: 5px * $base-size 10px * $base-size
   text-decoration: none
-  margin-right: 10px
-  margin-top: 10px
+  margin-right: 10px * $base-size
+  margin-top: 10px * $base-size
   display: inline-block
   background-color: #eee
-  border-radius: 4px
+  border-radius: 4px * $base-size
   &:visited
     color: #607D8B
 
@@ -69,23 +71,23 @@ nav a
 /* items class */
 
 .items
-  margin: 0 0 2em 0
+  margin: 0 0 2em * $base-size 0
   list-style-type: none
   padding: 0
-  width: 24em
+  width: 24em * $base-size
   li
     cursor: pointer
     position: relative
     left: 0
     background-color: #EEE
-    margin: .5em
-    padding: .3em 0
-    height: 1.6em
-    border-radius: 4px
+    margin: .5em * $base-size
+    padding: .3em * $base-size 0
+    height: 1.6em * $base-size
+    border-radius: 4px * $base-size
     &:hover
       color: #607D8B
       background-color: #DDD
-      left: .1em
+      left: .1em * $base-size
     &.selected
       background-color: #CFD8DC
       color: white
@@ -93,20 +95,20 @@ nav a
         background-color: #BBD8DC
   .text
     position: relative
-    top: -3px
+    top: -3px * $base-size
   .badge
     display: inline-block
     font-size: small
     color: white
-    padding: 0.8em 0.7em 0 0.7em
+    padding: 0.8em * $base-size 0.7em * $base-size 0 0.7em * $base-size
     background-color: #607D8B
-    line-height: 1em
+    line-height: 1em * $base-size
     position: relative
-    left: -1px
-    top: -4px
-    height: 1.8em
-    margin-right: .8em
-    border-radius: 4px 0 0 4px
+    left: -1px * $base-size
+    top: -4px * $base-size
+    height: 1.8em * $base-size
+    margin-right: .8em * $base-size
+    border-radius: 4px * $base-size 0 0 4px * $base-size
 
 /* #docregion toh */
 /* everywhere else */
