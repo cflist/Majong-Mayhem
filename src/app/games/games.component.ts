@@ -18,19 +18,25 @@ export class GamesComponent implements OnInit {
 
   ngOnInit() {
     this.getGames();
+    this.getMyGames();
     this.gameService.getTemplates().then(templates => {
       this.templates = templates; console.log(templates);
     });
   }
 
+  getMyGames(): void {
+    this.gameService.getGames(localStorage.getItem('username')).then(games => this.mygames = games);
+  }
+
   getGames(): void {
-    this.gameService.getGames().then(games => {
+    this.gameService.getGames("").then(games => {
       this.games = games
       this.loadMyGames();
     });
   }
 
   add(templateName: string, minPlayers: number, maxPlayers: number): void {
+    if (!minPlayers || !maxPlayers) { return;}
     if (minPlayers > maxPlayers) {alert("Minimal amount of players can not be higher than the maximum amount of players"); return;}
       this.gameService.create(templateName, minPlayers, maxPlayers).then(() => this.getGames());
   }

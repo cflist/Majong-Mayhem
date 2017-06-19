@@ -18,8 +18,8 @@ export class TileComponent {
   constructor() { }
 
   public getTileStyle() {
-    var x = 57;
-    var y = 79;
+    var x = 60;
+    var y = 85;
     var style = {
       //'left': ((this.tile.xPos * 30) + (this.tile.zPos * 5)) + "px",
       //'top': ((this.tile.yPos * 30) + (this.tile.zPos * 5)) + "px",

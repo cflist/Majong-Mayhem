@@ -24,8 +24,8 @@ export class GameService {
     return this.http.get(this.url + 'gameTemplates').toPromise().then(res => res.json() as GameTemplate[]).catch(this.handleError);
   }
 
-  getGames(): Promise<Game[]> {
-    return this.http.get(this.url + 'games').toPromise().then(res => res.json() as Game[]).catch(this.handleError);
+  getGames(optionalPlayer: string): Promise<Game[]> {
+    return this.http.get(this.url + 'games?player=' + optionalPlayer).toPromise().then(res => res.json() as Game[]).catch(this.handleError);
   }
 
   getGame(gameId: string): Promise<Game> {
