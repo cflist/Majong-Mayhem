@@ -12,7 +12,7 @@
   <app-root>Loading...</app-root>
   <script>
     if (window.location.pathname != "/authcallback" && (!localStorage.getItem("username") || !localStorage.getItem("token")))
-      location.href = "https://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=http://localhost:4200/authcallback";
+      location.href = "https://mahjongmayhem.herokuapp.com/auth/avans?callbackUrl=" + location.href + "/authcallback;
   </script>
 </body>
 </html>
