@@ -59,6 +59,10 @@ export class GameDetailComponent implements OnInit {
     this.gameService.leave(this.game.id);
   }
 
+  weAreMember(): boolean {
+    return this.game.players.find(player => player._id == localStorage.getItem("username")) != undefined;
+  }
+
   canStart(): boolean {
     return this.game.createdBy._id == localStorage.getItem('username') && this.game.state == 'open';
   }

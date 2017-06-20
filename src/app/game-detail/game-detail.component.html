@@ -3,26 +3,26 @@
 </nav>
 
 <ul>
-  <li><b>id:</b> {{game.id}}</li>
-  <li><b>Template:</b> {{game.gameTemplate.id}}</li>
-  <li><b>Created on:</b> {{game.createdOn | date}}</li>
-  <li><b>Started on:</b> {{game.startedOn | date}}</li>
-  <li><b>Ended on:</b> {{game.endedOn | date}}</li>
-  <li><b>Created by:</b> {{game.createdBy.name}}</li>
-  <li><b>Min players:</b> {{game.minPlayers}}</li>
-  <li><b>Max players:</b> {{game.maxPlayers}}</li>
+  <li><b>id:</b> {{game?.id}}</li>
+  <li><b>Template:</b> {{game?.gameTemplate.id}}</li>
+  <li><b>Created on:</b> {{game?.createdOn | date}}</li>
+  <li><b>Started on:</b> {{game?.startedOn | date}}</li>
+  <li><b>Ended on:</b> {{game?.endedOn | date}}</li>
+  <li><b>Created by:</b> {{game?.createdBy.name}}</li>
+  <li><b>Min players:</b> {{game?.minPlayers}}</li>
+  <li><b>Max players:</b> {{game?.maxPlayers}}</li>
   <li><b>Players:</b>
   <ul>
     <li *ngFor="let player of game.players">
     {{player.name}}
     </li>
   </ul></li>
-  <li><b>State:</b> {{game.state}}</li>
+  <li><b>State:</b> {{game?.state}}</li>
 </ul>
 
 <button *ngIf="canStart()" (click)="start()">Start</button>
 <button *ngIf="canJoin()" (click)="join()">Join</button>
-<button *ngIf="game.state=='playing'" (click)="play()">Play</button>
+<button *ngIf="game && game.state=='playing'" (click)="play()">{{ weAreMember() ? 'Play' : 'Watch' }}</button>
 <button *ngIf="canLeave()" (click)="leave()">Leave</button>
 
 
