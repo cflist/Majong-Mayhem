@@ -22,6 +22,7 @@ export class GamesComponent implements OnInit {
     this.gameService.getTemplates().then(templates => {
       this.templates = templates; console.log(templates);
     });
+    this.onChange(this.templates[0].id);
   }
 
   getMyGames(): void {
@@ -33,6 +34,10 @@ export class GamesComponent implements OnInit {
       this.games = games
       this.loadMyGames();
     });
+  }
+
+  onChange(templateName: string) {
+    this.selectedTemplate = this.templates.find(template => template.id == templateName);
   }
 
   add(templateName: string, minPlayers: number, maxPlayers: number): void {

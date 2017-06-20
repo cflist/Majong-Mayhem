@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit} from '@angular/core';
 import { GameService }  from '../game.service';
 import { TileComponent } from '../tile/tile.component';
 import { Tile } from '../tile';
@@ -8,11 +8,15 @@ import { Tile } from '../tile';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.sass']
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit {
   @Input() tiles: Tile[];
   @Output() tileSelected: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
+
+  ngOnInit() {
+    console.log(this.tiles);
+  }
 
   public boardTileSelected(tile) {
     this.tileSelected.emit(tile);

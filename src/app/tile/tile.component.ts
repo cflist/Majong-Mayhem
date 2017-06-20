@@ -30,6 +30,7 @@ export class TileComponent {
   }
 
   public getTileUnicode() {
+    if (!this.tile.tile) { return 5; }
     switch(this.tile.tile.suit) {
       case "Bamboo":
         if (+this.tile.tile.name > 9) break;
