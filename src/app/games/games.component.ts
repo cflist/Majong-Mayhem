@@ -22,8 +22,8 @@ export class GamesComponent implements OnInit {
     this.getMyGames();
     this.gameService.getTemplates().then(templates => {
       this.templates = templates; console.log(templates);
+      this.onChange(this.templates[0].id);
     });
-    this.onChange(this.templates[0].id);
   }
 
   getMyGames(): void {
