@@ -60,13 +60,13 @@ describe('TileComponent', () => {
 
   it('should return the right unicode', () =>{
       tile.tile.suit = "Bamboo";
-      expect(component.getTileUnicode()).toBe('zxcvbnm,.'.charAt(+tile.tile.name));
+      expect(component.getTileUnicode()).toBe('zxcvbnm,.'.charAt(+tile.tile.name -1));
       tile.tile.suit = "Character";
-      expect(component.getTileUnicode()).toBe('qwertyuio'.charAt(+tile.tile.name));
+      expect(component.getTileUnicode()).toBe('qwertyuio'.charAt(+tile.tile.name -1));
       tile.tile.suit = "Circle";
-      expect(component.getTileUnicode()).toBe('asdfghjkl'.charAt(+tile.tile.name));
+      expect(component.getTileUnicode()).toBe('asdfghjkl'.charAt(+tile.tile.name -1));
       tile.tile.suit = "Character";
-      expect(component.getTileUnicode()).toBe('qwertyuio'.charAt(+tile.tile.name));
+      expect(component.getTileUnicode()).toBe('qwertyuio'.charAt(+tile.tile.name -1));
       tile.tile.suit = "Dragon";
       tile.tile.name = "Red";
       expect(component.getTileUnicode()).toBe(7);
