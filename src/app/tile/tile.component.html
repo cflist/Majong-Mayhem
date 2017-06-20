@@ -1,2 +1,2 @@
-<div *ngIf="!tile.match" class="tile {{tile.tile.suit}}" [class.matcheswholesuit]="tile.matchesWholeSuit" [class.selected]="tile.selected" [ngStyle]="getTileStyle()" (click)="sendNotification()">{{getTileUnicode()}}</div>
+<div class="tile {{tile.tile.suit}}" [class.matcheswholesuit]="tile.matchesWholeSuit" [class.selected]="tile.selected" [ngStyle]="getTileStyle()" (click)="sendNotification()">{{getTileUnicode()}}</div>
 
