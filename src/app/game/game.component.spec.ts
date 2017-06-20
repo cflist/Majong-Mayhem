@@ -6,10 +6,12 @@ import { GameService } from '../game.service';
 import { GameComponent } from './game.component';
 import { Tile } from '../tile';
 import { TileMatchResponse } from "../tileMatchResponse";
+import { Player } from "../player";
 
 describe('GameComponent', () => {
   let component: GameComponent;
   let fixture: ComponentFixture<GameComponent>;
+  var player: Player = { name: "", numberOfMatches: 0, _id: ""};
   var tiles: Tile[] = [];
   var tile: Tile = { xPos: 1, yPos: 1, zPos: 1, 
     tile: { id: 1, suit: "", name: "", matchesWholeSuit: false, },
@@ -42,6 +44,7 @@ describe('GameComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(GameComponent);
     component = fixture.componentInstance;
+    component.players = [player];
     fixture.detectChanges();
   });
 
