@@ -21,8 +21,6 @@ export class TileComponent {
     var width = 60;
     var height = 82.5;
     var style = {
-      //'left': ((this.tile.xPos * 30) + (this.tile.zPos * 5)) + "px",
-      //'top': ((this.tile.yPos * 30) + (this.tile.zPos * 5)) + "px",
       'top': (this.tile.yPos * (height/2)) - (this.tile.zPos * 5) + "px",
       'left': (this.tile.xPos * (width/2)) + (this.tile.zPos * 5) + "px",
       'z-index': this.tile.zPos
