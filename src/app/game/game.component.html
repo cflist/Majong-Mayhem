@@ -1,6 +1,12 @@
-<div id="matchcontainer">
+<div id="matchcountcontainer">
   <div *ngFor="let player of players">
     <div>{{player.name}}: {{player.numberOfMatches}}</div>
+  </div>
+</div>
+
+<div id="matchcontainer">
+  <div *ngFor="let tilegroup of matchedTileGroups">
+    <div>{{tilegroup.player.name}}: <span class="tile"><app-tile [tile]=tilegroup.tiles[0] [freestyle]=true></app-tile></span> &amp; <span class="tile"><app-tile [tile]=tilegroup.tiles[1] [freestyle]=true></app-tile></span></div>
   </div>
 </div>
 

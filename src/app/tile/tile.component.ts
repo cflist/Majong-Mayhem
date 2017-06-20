@@ -8,6 +8,7 @@ import { Tile } from '../tile';
 })
 
 export class TileComponent {
+  @Input() freestyle: boolean;
   @Input() tile: Tile;
   @Output() tileSelected: EventEmitter<any> = new EventEmitter();
 

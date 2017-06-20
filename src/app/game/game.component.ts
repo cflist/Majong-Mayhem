@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { GameService }  from '../game.service';
 import { Game } from '../game';
 import { Tile } from '../tile';
+import { TileGroup } from '../tileGroup';
 import { Player } from '../player';
 import * as io from 'socket.io-client';
 
@@ -13,6 +14,7 @@ import * as io from 'socket.io-client';
 })
 export class GameComponent implements OnInit {
   tiles: Tile[];
+  matchedTileGroups: TileGroup[];
   players: Player[];
   gameId: string;
   constructor(private gameService: GameService,
@@ -26,6 +28,7 @@ export class GameComponent implements OnInit {
 
       this.gameService.getTiles(this.gameId).then(tiles => {
         this.tiles = tiles;
+        this.matchedTileGroups = [];
 
         this.gameService.getPlayers(this.gameId).then(players => {
           this.players = players;
@@ -34,15 +37,25 @@ export class GameComponent implements OnInit {
           var that = this;
 
           socket.on('match', function(tiles) {
-            that.players.find(function (player) {
+            var matchingPlayer = that.players.find(function (player) {
               return player._id == tiles[0].match.foundBy;
-            }).numberOfMatches++;
+            });
+
+            matchingPlayer.numberOfMatches++;
+
+            var localTiles = [];
 
             for (var i = 0; i < 2; i++) {
-              that.tiles.find(function (tile) {
+              var localTile = that.tiles.find(function (tile) {
                 return tile._id == tiles[i]._id;
-              }).match = tiles[i].match;
+              })
+
+              localTile.match = tiles[i].match;
+              localTiles.push(localTile);
             }
+
+            var tileGroup = { player: matchingPlayer, tiles: localTiles } as TileGroup;
+            that.matchedTileGroups.unshift(tileGroup);
           });
 
           socket.on('end', function() {
