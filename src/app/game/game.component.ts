@@ -53,7 +53,13 @@ export class GameComponent implements OnInit {
     });
   }
 
+  public weAreMember(): boolean {
+    return this.players.find(player => player._id == localStorage.getItem("username")) != undefined;
+  }
+
   public tileSelected(tile) {
+    if (!this.weAreMember()) return;
+
     if (this.selectedTiles.length == 1) {
       if (tile == this.selectedTiles[0]) {
         tile.selected = false;
@@ -75,21 +81,19 @@ export class GameComponent implements OnInit {
     tiles[0].selected = false;
     tiles[1].selected = false;
 
-    console.log(tiles);
-
-    // if (tiles[0].tile.suit == tiles[1].tile.suit) {
-    //   if (tiles[0].matchesWholeSuit ||
-    //       (tiles[0].tile.name == tiles[1].tile.name)) {
-            this.gameService.postTileMatch(this.gameId, tiles).then(object => {
-              if (object.message){
-              alert(object.message.replace(/{{.*}} /g, ''));}
-            });
-            return;
-    //   } else {
-    //     alert("The chosen tiles are not a match");
-    //   }
-    // } else {
-    //   alert("The chosen tiles are not of the same suit");
-    // }
+    if (tiles[0].tile.suit == tiles[1].tile.suit) {
+      if (tiles[0].matchesWholeSuit ||
+          (tiles[0].tile.name == tiles[1].tile.name)) {
+         this.gameService.postTileMatch(this.gameId, tiles).then(object => {
+           if (object.message){
+           alert(object.message.replace(/{{.*}} /g, ''));}
+         });
+         return;
+      } else {
+        alert("The chosen tiles are not a match");
+      }
+    } else {
+      alert("The chosen tiles are not of the same suit");
+    }
   }
 }
